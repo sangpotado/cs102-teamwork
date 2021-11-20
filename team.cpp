@@ -80,6 +80,105 @@ void getdata(string line, int c, team teams[][2]) {
 	teams[c][1].points = stoi(num2);
 }
 
+double winnersaverage(team winners_scores[99][2], int rows)
+{
+    double total = 0;
+    double counter = 0;
+    
+    for(int i = 0; i < rows; i++)
+    {
+        total = total + winners_scores[i][0].points;
+        counter++;
+        
+    }
+    
+    double average;
+    average = total / counter;
+    return average;
+
+}
+
+double losersaverage(team losers_scores[99][2], int rows)
+{
+    double total = 0;
+    double counter = 0;
+    
+    for(int i = 0; i < rows; i++)
+    {
+        total = total + losers_scores[i][1].points;
+        counter++;
+        
+    }
+    
+    double average;
+    average = total / counter;
+    return average;
+}
+
+double maxscore(team team[99][2], int rows)
+{
+    int max = 0;
+    
+    for(int i = 0; i < rows; i++)
+    {
+        for(int j = 0; j < 2; j++)
+        {
+            if(team[i][j].points > max)
+            {
+                max = team[i][j].points;
+            }
+        }
+    }
+    
+    return max;
+
+}
+
+double minscore(team team[99][2], int rows)
+{
+    int min = 10000000000000;
+    
+    for(int i = 0; i < rows; i++)
+    {
+        for(int j = 0; j < 2; j++)
+        {
+            if(team[i][j].points < min)
+            {
+                min = team[i][j].points;
+            }
+        }
+    }
+    
+    return min;
+
+}
+
+void printmostwins(team team[99][2], int rows)
+{
+    struct winners
+    {
+        string name;
+        int points;
+    };
+    
+    winners wins[99];
+    
+    
+    for(int i = 0; i < rows; i++)
+    {
+        if(team[i][0].points > team[i][1].points)
+        {
+            wins[i].name = team[i][0].name;
+        }
+        else if(team[i][0].points < team[i][1].points)
+        {
+                
+        }
+    }
+}
+
+
+
 int main(){
 	team teams[99][2];
 	int rows = 0;
@@ -100,4 +199,19 @@ int main(){
     	}
 		cout << endl;
 }
+
+    double result = winnersaverage(teams, rows);
+    double result2 = losersaverage(teams, rows);
+    double result3 = maxscore(teams, rows);
+    double result4 = minscore(teams, rows);
+    
+    
+    cout << "First Super Bowl Winner: " << teams[0][0].name << ", Score: " << teams[0][0].points << endl;
+    cout << "Most recent Super Bowl Winner: " << teams[0][rows].name << ", Score: " << teams[0][rows].points << endl;
+    cout << "Maximum score of any super bowl team: " << result3 << endl;
+    cout << "Minimum score of any super bowl team: " << result4 << endl;
+    cout << "Average winning score from Super Bowl teams: " << result << endl;
+    cout << "Average losing score from Super Bowl teams: " << result2 << endl;
+
+
 }
