@@ -153,29 +153,6 @@ double minscore(team team[99][2], int rows)
 
 }
 
-void printmostwins(team team[99][2], int rows)
-{
-    struct winners
-    {
-        string name;
-        int points;
-    };
-    
-    winners wins[99];
-    
-    
-    for(int i = 0; i < rows; i++)
-    {
-        if(team[i][0].points > team[i][1].points)
-        {
-            wins[i].name = team[i][0].name;
-        }
-        else if(team[i][0].points < team[i][1].points)
-        {
-                
-        }
-    }
-}
 
 
 
