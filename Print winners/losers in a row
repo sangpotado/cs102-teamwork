@@ -1,0 +1,257 @@
+void printmostwins(team team[99][2], int rows)
+{
+    vector<string> preteams = {"Green Bay", "Green Bay", "New York Jets", "Kansas City"}; // First 4 teams in the data
+    vector<string> winsinarow5;
+    vector<string> winsinarow4;
+    vector<string> winsinarow3;
+    vector<string> winsinarow2 = {"Green Bay"};
+    
+    for(int i = 4; i < rows; i++)
+    {
+        int elements = preteams.size();
+        
+        if(team[i][0].name == preteams[elements - 1] && team[i][0].name == preteams[elements - 2] && team[i][0].name == preteams[elements - 3] && team[i][0].name == preteams[elements - 4])
+        {
+            winsinarow5.push_back(team[i][0].name);
+            preteams.push_back(team[i][0].name);
+        }
+        else if(team[i][0].name == preteams[elements - 1] && team[i][0].name == preteams[elements - 2] && team[i][0].name == preteams[elements - 3])
+        {
+            winsinarow4.push_back(team[i][0].name);
+            preteams.push_back(team[i][0].name);
+        }
+        else if(team[i][0].name == preteams[elements - 1] && team[i][0].name == preteams[elements - 2])
+        {
+            winsinarow3.push_back(team[i][0].name);
+            preteams.push_back(team[i][0].name);
+        }
+        else if(team[i][0].name == preteams[elements - 1])
+        {
+            winsinarow2.push_back(team[i][0].name);
+            preteams.push_back(team[i][0].name);
+        }
+        
+        else
+        {
+            preteams.push_back(team[i][0].name);
+        }
+    }
+    
+    int size1 = winsinarow5.size();
+    int size2 = winsinarow4.size();
+    int size3 = winsinarow3.size();
+    int size4 = winsinarow2.size();
+    
+        
+    
+    if(size1 > 0)
+    {
+        if(size1 == 1)
+        {
+            cout << "The team that has won the most times in a row is: " << winsinarow5[0] << endl;
+            cout << "This team has won five times in a row." << endl;
+        }
+        if(size1 > 1)
+        {
+            cout << "The teams that have won the most times in a row are: ";
+            
+            for(int i = 0; i < size1; i++)
+            {
+                cout << winsinarow5[i] << " ";
+            }
+            cout << endl;
+            cout << "These teams has won five times in a row." << endl;
+        }
+    }
+    else if(size2 > 0)
+    {
+        if(size2 == 1)
+        {
+            cout << "The team that has won the most times in a row is: " << winsinarow4[0] << endl;
+            cout << "This team has won four times in a row." << endl;
+        }
+        if(size2 > 1)
+        {
+            cout << "The teams that have won the most times in a row are: ";
+            
+            for(int i = 0; i < size2; i++)
+            {
+                cout << winsinarow4[i] << " ";
+            }
+            cout << endl;
+            cout << "These teams has won four times in a row." << endl;
+        }
+    }
+    else if(size3 > 0)
+    {
+        if(size3 == 1)
+        {
+            cout << "The team that has won the most times in a row is: " << winsinarow3[0] << endl;
+            cout << "This team has won three times in a row." << endl;
+        }
+        if(size3 > 1)
+        {
+            cout << "The teams that have won the most times in a row are: ";
+            
+            for(int i = 0; i < size3; i++)
+            {
+                cout << winsinarow3[i] << " ";
+            }
+            cout << endl;
+            cout << "These teams has won three times in a row." << endl;
+        }
+    }
+    else if(size4 > 0)
+    {
+        if(size4 == 1)
+        {
+            cout << "The team that has won the most times in a row is: " << winsinarow2[0] << endl;
+            cout << "This team has won two times in a row." << endl;
+        }
+        if(size4 > 1)
+        {
+            cout << "The teams that have won the most times in a row are: ";
+            
+            for(int i = 0; i < size4; i++)
+            {
+                cout << winsinarow2[i] << " ";
+            }
+            cout << endl;
+            cout << "These teams has won two times in a row." << endl;
+        }
+    }
+
+
+}
+
+void printmostloses(team team[99][2], int rows)
+{
+    vector<string> preteams = {"Kansas City", "Oakland Raiders", "Baltimore Colts", "Minnesota"}; // First 4 teams in the data
+    vector<string> winsinarow5;
+    vector<string> winsinarow4;
+    vector<string> winsinarow3;
+    vector<string> winsinarow2;
+    
+    for(int i = 4; i < rows; i++)
+    {
+        int elements = preteams.size();
+        
+        if(team[i][1].name == preteams[elements - 1] && team[i][1].name == preteams[elements - 2] && team[i][1].name == preteams[elements - 3] && team[i][1].name == preteams[elements - 4])
+        {
+            winsinarow5.push_back(team[i][1].name);
+            preteams.push_back(team[i][1].name);
+        }
+        else if(team[i][1].name == preteams[elements - 1] && team[i][1].name == preteams[elements - 2] && team[i][1].name == preteams[elements - 3])
+        {
+            winsinarow4.push_back(team[i][1].name);
+            preteams.push_back(team[i][1].name);
+        }
+        else if(team[i][1].name == preteams[elements - 1] && team[i][1].name == preteams[elements - 2])
+        {
+            winsinarow3.push_back(team[i][1].name);
+            preteams.push_back(team[i][1].name);
+        }
+        else if(team[i][1].name == preteams[elements - 1])
+        {
+            winsinarow2.push_back(team[i][1].name);
+            preteams.push_back(team[i][1].name);
+        }
+        
+        else
+        {
+            preteams.push_back(team[i][1].name);
+        }
+    }
+    
+    int size1 = winsinarow5.size();
+    int size2 = winsinarow4.size();
+    int size3 = winsinarow3.size();
+    int size4 = winsinarow2.size();
+    
+        
+    
+    if(size1 > 0)
+    {
+        if(size1 == 1)
+        {
+            cout << "The team that has lost the most times in a row is: " << winsinarow5[0] << endl;
+            cout << "This team has lost five times in a row." << endl;
+        }
+        if(size1 > 1)
+        {
+            cout << "The teams that have lost the most times in a row are: ";
+            
+            for(int i = 0; i < size1; i++)
+            {
+                cout << winsinarow5[i] << " ";
+            }
+            cout << endl;
+            cout << "These teams has lost five times in a row." << endl;
+        }
+    }
+    else if(size2 > 0)
+    {
+        if(size2 == 1)
+        {
+            cout << "The team that has lost the most times in a row is: " << winsinarow4[0] << endl;
+            cout << "This team has lost four times in a row." << endl;
+        }
+        if(size2 > 1)
+        {
+            cout << "The teams that have lost the most times in a row are: ";
+            
+            for(int i = 0; i < size2; i++)
+            {
+                cout << winsinarow4[i] << " ";
+            }
+            cout << endl;
+            cout << "These teams has lost four times in a row." << endl;
+        }
+    }
+    else if(size3 > 0)
+    {
+        if(size3 == 1)
+        {
+            cout << "The team that has lost the most times in a row is: " << winsinarow3[0] << endl;
+            cout << "This team has lost three times in a row." << endl;
+        }
+        if(size3 > 1)
+        {
+            cout << "The teams that have lost the most times in a row are: ";
+            
+            for(int i = 0; i < size3; i++)
+            {
+                cout << winsinarow3[i] << " ";
+            }
+            cout << endl;
+            cout << "These teams has lost three times in a row." << endl;
+        }
+    }
+    else if(size4 > 0)
+    {
+        if(size4 == 1)
+        {
+            cout << "The team that has lost the most times in a row is: " << winsinarow2[0] << endl;
+            cout << "This team has lost two times in a row." << endl;
+        }
+        if(size4 > 1)
+        {
+            cout << "The teams that have lost the most times in a row are: ";
+            
+            for(int i = 0; i < size4; i++)
+            {
+                cout << winsinarow2[i] << " ";
+            }
+            cout << endl;
+            cout << "These teams has lost two times in a row." << endl;
+        }
+    }
+
+
+}
+
+int main()
+{
+  printmostwins(teams, rows);
+  printmostloses(teams, rows);
+}
