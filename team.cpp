@@ -127,11 +127,11 @@ void WorstTeam(team t[][2], int row) {
 			else {repeated = false;}
 		}
 	}
-	cout << "The team(s) that have never won but lost the most super bowls are: <";
+	cout << "The team(s) that have never won but lost the most super bowls are: ";
 	for (int i=0; i<locationsLength; i++) {
-		cout << neverWin[locations[i]] << "> <";
+		cout << "<" << neverWin[locations[i]] << "> ";
 	}
-	cout << "> they lost " << mostloses << " times." << endl;
+	cout << "they lost " << mostloses << " times." << endl;
 }
 
 double winnersaverage(team winners_scores[99][2], int rows)
@@ -207,6 +207,40 @@ double minscore(team team[99][2], int rows)
 
 }
 
+void mostLosesinaRow(team t[][2], int rows) {
+    vector<string> mostlostTeams;
+    int mostloses = 1;
+    string currentteam = t[0][1].name;
+    int currentloses = 1;
+
+    for (int i=1; i<rows; i++) {
+        if (currentteam == t[i][1].name) {
+            currentloses++;
+            if (currentloses > mostloses) {mostloses = currentloses;}
+        }
+        else {
+            currentteam = t[i][1].name; 
+            currentloses = 1;}
+    }
+
+    currentteam = t[0][1].name;
+    currentloses = 1;
+    int n = 0;
+    for (int j=1; j<rows; j++) {
+        if (currentteam == t[j][1].name) {
+            currentloses++;
+            if (currentloses == mostloses) {
+                mostlostTeams.push_back(currentteam); n++;
+                }
+        }
+        else {currentteam = t[j][1].name; currentloses = 1;}
+    }
+    cout << "The team(s) that have lost the most times in a row are: ";
+    for (int k=0; k<n; k++) {
+        cout << "<" << mostlostTeams[k] << "> ";
+    }
+    cout << "they lost " << mostloses << " times in a row." << endl;
+}
 
 
 
@@ -230,13 +264,15 @@ int main(){
     double result3 = maxscore(teams, rows);
     double result4 = minscore(teams, rows);
     
-    
+
     cout << "First Super Bowl Winner: " << teams[0][0].name << ", Score: " << teams[0][0].points << endl;
     cout << "Most recent Super Bowl Winner: " << teams[0][rows].name << ", Score: " << teams[0][rows].points << endl;
     cout << "Maximum score of any super bowl team: " << result3 << endl;
     cout << "Minimum score of any super bowl team: " << result4 << endl;
     cout << "Average winning score from Super Bowl teams: " << result << endl;
     cout << "Average losing score from Super Bowl teams: " << result2 << endl;
+    
     WorstTeam(teams, rows);
 
+    mostLosesinaRow(teams, rows);
 }
