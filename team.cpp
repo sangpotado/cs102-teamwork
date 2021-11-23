@@ -207,22 +207,25 @@ double minscore(team team[99][2], int rows)
 
 }
 
+// this function loop through teams array twice. In the first time, it find the largest number of loses that a team can get. In the second time, the current team with (current loses == mostloses) will be added to the mostlostTeams vector
 void mostLosesinaRow(team t[][2], int rows) {
+    // declaring the variables
     vector<string> mostlostTeams;
     int mostloses = 1;
-    string currentteam = t[0][1].name;
+    string currentteam = t[0][1].name;	//setting the current team as the one in the first row, and mostloses is currently 1
     int currentloses = 1;
 
     for (int i=1; i<rows; i++) {
-        if (currentteam == t[i][1].name) {
+        if (currentteam == t[i][1].name) {	//start with the second row (index = 1), if the team on this row has the same name as the currentteam (previous row), the number of current loses increases
             currentloses++;
-            if (currentloses > mostloses) {mostloses = currentloses;}
+            if (currentloses > mostloses) {mostloses = currentloses;}	//if current loses is higher than the mostloses, it becomes the new mostloses
         }
-        else {
-            currentteam = t[i][1].name; 
-            currentloses = 1;}
+        else {		//if the team has different name from the previous team, they're not the losing team any more.
+            currentteam = t[i][1].name; 	//currentteam is set to a new team that just lost
+            currentloses = 1;}		//currentloses is reset to 1
     }
 
+	//second looping, this time, currentloses of a team will be compared with the mostloses. If that team has the most loses, they will be added to the vector mostlosesTeams
     currentteam = t[0][1].name;
     currentloses = 1;
     int n = 0;
@@ -235,6 +238,8 @@ void mostLosesinaRow(team t[][2], int rows) {
         }
         else {currentteam = t[j][1].name; currentloses = 1;}
     }
+	
+	//loop through the vector mostlostTeams to announce the teams with most loses in a row
     cout << "The team(s) that have lost the most times in a row are: ";
     for (int k=0; k<n; k++) {
         cout << "<" << mostlostTeams[k] << "> ";
