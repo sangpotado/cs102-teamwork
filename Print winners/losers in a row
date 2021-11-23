@@ -1,25 +1,37 @@
 void printmostwins(team team[99][2], int rows)
+
+// The idea behind this function is that the program will read the team names from column zero (the winners column) and 
+// compare the current team's name to the previous team name(s). Based on the number of previous names that the current 
+// name is equal to, the current name will be saved in the corresponding vector. For example: The previous values are Green bay, Miami, 
+// SF, SF and the current name is SF. Since SF is equal to the two previous values this must mean that SF won 3 times in a row. Then SF 
+// wouls be saved into the winsinarow3 vector. This vector will be printed later. Also SF will then be saved in the preteams vector as well so 
+// it can be compared with future team names.
+
+
 {
-    vector<string> preteams = {"Green Bay", "Green Bay", "New York Jets", "Kansas City"}; // First 4 teams in the data
-    vector<string> winsinarow5;
+    vector<string> preteams = {"Green Bay", "Green Bay", "New York Jets", "Kansas City"}; // These should be the first four teams saved in the array of structures. These are here so the team name in row 4 and onward can be compared to these values.
+    vector<string> winsinarow5; // These vectors are for saving teams with a certain amount of wins in a row.
     vector<string> winsinarow4;
     vector<string> winsinarow3;
-    vector<string> winsinarow2 = {"Green Bay"};
+    vector<string> winsinarow2 = {"Green Bay"}; // Green bay is already in this vector becasue as you can see green bay won the first and second super bowls. They are a team that has won twice in a row.
     
-    for(int i = 4; i < rows; i++)
+    for(int i = 4; i < rows; i++) // i is equal to four becasue the first four team names are already saved in the preteams vector so we need to start on the team name in row 5 or index 4.
     {
-        int elements = preteams.size();
+        int elements = preteams.size(); // This gives the number of team names that are currently in the preteams vector. This is important becasue we only want to compare the current team name to the team names that are no more than 4 positions behind it.
         
-        if(team[i][0].name == preteams[elements - 1] && team[i][0].name == preteams[elements - 2] && team[i][0].name == preteams[elements - 3] && team[i][0].name == preteams[elements - 4])
+        if(team[i][0].name == preteams[elements - 1] && team[i][0].name == preteams[elements - 2] && team[i][0].name == preteams[elements - 3] && team[i][0].name == preteams[elements - 4]) // If the current team name is equal to the four previous team names then it must mean that this team has won five times in a row.
         {
-            winsinarow5.push_back(team[i][0].name);
-            preteams.push_back(team[i][0].name);
+            winsinarow5.push_back(team[i][0].name); // save this the current team name into the the vector for teams with five wins in a row.
+            preteams.push_back(team[i][0].name); // Also add the current team name into the preteams vector so it can be compared to future values.
         }
-        else if(team[i][0].name == preteams[elements - 1] && team[i][0].name == preteams[elements - 2] && team[i][0].name == preteams[elements - 3])
+        else if(team[i][0].name == preteams[elements - 1] && team[i][0].name == preteams[elements - 2] && team[i][0].name == preteams[elements - 3]) // If the current team name is equal to the four previous team names then it must mean that this team has won four times in a row.
         {
-            winsinarow4.push_back(team[i][0].name);
-            preteams.push_back(team[i][0].name);
+            winsinarow4.push_back(team[i][0].name); // save this the current team name into the the vector for teams with five wins in a row.
+            preteams.push_back(team[i][0].name); // Also add the current team name into the preteams vector so it can be compared to future values.
         }
+        
+        // The other if statments use the same thought process as the ones above
+        
         else if(team[i][0].name == preteams[elements - 1] && team[i][0].name == preteams[elements - 2])
         {
             winsinarow3.push_back(team[i][0].name);
@@ -37,6 +49,8 @@ void printmostwins(team team[99][2], int rows)
         }
     }
     
+   // Below give all of the current sizes of the vectors after the loop has evaluated every team name within the array.
+    
     int size1 = winsinarow5.size();
     int size2 = winsinarow4.size();
     int size3 = winsinarow3.size();
@@ -44,9 +58,9 @@ void printmostwins(team team[99][2], int rows)
     
         
     
-    if(size1 > 0)
+    if(size1 > 0) // It is telling the computer to print the values in winsinarow5 if the size is greater than one.
     {
-        if(size1 == 1)
+        if(size1 == 1)// These if statments are here just for gramatical purposes. They both print the contents of the vector.
         {
             cout << "The team that has won the most times in a row is: " << winsinarow5[0] << endl;
             cout << "This team has won five times in a row." << endl;
@@ -63,7 +77,7 @@ void printmostwins(team team[99][2], int rows)
             cout << "These teams has won five times in a row." << endl;
         }
     }
-    else if(size2 > 0)
+    else if(size2 > 0) // It is telling the computer to print the values in winsinarow4 if the size is greater than one.
     {
         if(size2 == 1)
         {
@@ -121,8 +135,20 @@ void printmostwins(team team[99][2], int rows)
         }
     }
 
+    // This function can only check if a team has won 5x in row. If a team wins any more times in a row (5+ times) then the program will not detect this. 
+    // Five in a row should be plenty because a team has never more than twice in a row. There have been 52 super bowls and no team has ever won more than 
+    // twice in a row. The chances of a team winning 6 super bowls in consecutive years is so so low.
+    
+    // If you think about it once the program detects a team has won twice in a row it will save that team name into the vector for teams that have won 
+    // twice in a row. However, lets say a team won three times in a row technically, the team name would first be saved into the vector for teams that have 
+    // won twice in a row and then it again would be saved into the vector for teams that have won 3 times in row. This does not matter becasue the way the 
+    // if statments that output data to the user are structred so that they will only print the vector that represents the most amount of wins in a row and 
+    // nothing else.
+    
 
-}
+
+
+
 
 void printmostloses(team team[99][2], int rows)
 {
