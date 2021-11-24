@@ -361,6 +361,8 @@ int main(){
     cout << "Minimum score of any super bowl team: " << result4 << endl;
     cout << "Average winning score from Super Bowl teams: " << result << endl;
     cout << "Average losing score from Super Bowl teams: " << result2 << endl;
-    WorstTeam(teams, rows);
+    WorstTeam(teams, rows); 
+	MostInRow(teams, rows);
+    LostInRow(teams, rows);
 
 }
