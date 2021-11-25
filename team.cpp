@@ -134,25 +134,25 @@ void WorstTeam(team t[][2], int row) {
 	cout << "> they lost " << mostloses << " times." << endl;
 }
 
-double winnersaverage(team winners_scores[99][2], int rows)
+double winnersaverage(team winners_scores[99][2], int rows) // This function finds the average winning score 
 {
-    double total = 0;
-    double counter = 0;
+    double total = 0; //counter for the total of all scores 
+    double counter = 0; // counter number of values added to the total 
     
-    for(int i = 0; i < rows; i++)
+    for(int i = 0; i < rows; i++) // This loop goes through every element that is currently in column zero 
     {
-        total = total + winners_scores[i][0].points;
-        counter++;
+        total = total + winners_scores[i][0].points; // The total is equal to the current total plus the current element being evaluated by the loop
+        counter++; // The counter is also incremented every time an element is evaluated 
         
     }
     
     double average;
-    average = total / counter;
+    average = total / counter; // The average is equal to the total scores divded by the counter 
     return average;
 
 }
 
-double losersaverage(team losers_scores[99][2], int rows)
+double losersaverage(team losers_scores[99][2], int rows) // This function is the same as winnersaverage but it just evaluates all the values in column one which is the loser's column
 {
     double total = 0;
     double counter = 0;
@@ -169,17 +169,17 @@ double losersaverage(team losers_scores[99][2], int rows)
     return average;
 }
 
-double maxscore(team team[99][2], int rows)
+double maxscore(team team[99][2], int rows) // This function finds the highest score in the data 
 {
-    int max = 0;
+    int max = 0; // max is originally equal to zero 
     
-    for(int i = 0; i < rows; i++)
+    for(int i = 0; i < rows; i++) // This loop goes through all the rows in the data 
     {
-        for(int j = 0; j < 2; j++)
+        for(int j = 0; j < 2; j++) // This loop goes through every column in the data 
         {
-            if(team[i][j].points > max)
+            if(team[i][j].points > max) // The task below is carried out if the current element is greater than the max
             {
-                max = team[i][j].points;
+                max = team[i][j].points; // Replace the value of max with the current element that is being evaluated 
             }
         }
     }
@@ -188,17 +188,18 @@ double maxscore(team team[99][2], int rows)
 
 }
 
-double minscore(team team[99][2], int rows)
+double minscore(team team[99][2], int rows) // This function finds the lowest score in the data. It is almost the same as the maxscore function. 
 {
-    int min = 1000;
+    int min = 1000; // min is orignally a big number so the first element evaluated will become the new value of min and then future elements can
+	// be compared to this value 
     
-    for(int i = 0; i < rows; i++)
+    for(int i = 0; i < rows; i++) // These loops are the same as the maxscore function 
     {
         for(int j = 0; j < 2; j++)
         {
-            if(team[i][j].points < min)
+            if(team[i][j].points < min) // The task below is carried out only if the current element is less than the current value of min 
             {
-                min = team[i][j].points;
+                min = team[i][j].points; // Replace the current value of min with the value of the current element
             }
         }
     }
