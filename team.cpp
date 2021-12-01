@@ -208,6 +208,130 @@ double minscore(team team[99][2], int rows) // This function finds the lowest sc
 
 }
 
+//This function calculates the team(s) that won the most times in a row, how many times they won, and prints that information out to the console
+void MostInRow(team teams[][2], int row)
+{
+	//initializing variables needed for the function
+	vector<string> BestTeams;
+	int bestInRow = 0;
+	int currentWins = 1;
+	
+	//looping throuh the teams.name array. This compares the current team and next team to see if they won multiple times
+	for(int i = 0; i < row; i++)
+	{
+		//if a team won multiple times, it increments the counter
+		if(teams[i + 1][0].name == teams[i][0].name)
+		{
+			currentWins++;
+		}
+		//if the streak was broken, the counter resets to 1
+		else
+		{
+			currentWins = 1;
+		}
+		//before the loop ends, if the counter is at it's highest, it will set a variable to save the highest value the counter got to
+		if(currentWins > bestInRow)
+		{
+			bestInRow = currentWins;
+		}
+	}
+	
+	//counter is reset so another loop can be started
+	currentWins = 1;
+	
+	//now that the program knows the highest wins in a row for any team, another loop is needed to check every team that won that many times in a row
+	for(int i = 0; i < row; i++)
+	{
+		if(teams[i + 1][0].name == teams[i][0].name)
+		{
+			currentWins++;
+		}
+		else
+		{
+			currentWins = 1;
+		}
+		//this adds the name of the team(s) that have the highest number of wins in a row to a vector
+		if ((currentWins == bestInRow) && (teams[i + 1][0].name == teams[i][0].name))
+		{
+			BestTeams.push_back(teams[i][0].name);
+		}
+	}
+	
+	//printing out the information
+	cout << "The team(s) that have won the most amount of times in a row are: ";
+	for (int i = 0; i < BestTeams.size(); i++)
+	{
+		//this condition just checks for duplicate values
+		if (BestTeams[i] != BestTeams[i+1])
+		{
+			cout << "<" << BestTeams[i] << "> ";
+		}
+	}
+	cout << "they won " << bestInRow << " times in a row." << endl;
+}
+
+
+//This function calculates the team(s) that lost the most times in a row, how many times they lost, and prints that information out to the console
+void LostInRow(team teams[][2], int row)
+{
+	//initializing variables needed for the function
+	vector<string> WorstTeams;
+	int worstInRow = 0;
+	int currentLosses = 1;
+	
+	//looping throuh the teams.name array. This compares the current team and next team to see if they lost multiple times
+	for(int i = 0; i < row; i++)
+	{
+		//if a team lost multiple times, it increments the counter
+		if(teams[i + 1][1].name == teams[i][1].name)
+		{
+			currentLosses++;
+		}
+		//if the streak was broken, the counter resets to 1
+		else
+		{
+			currentLosses = 1;
+		}
+		//before the loop ends, if the counter is at it's highest, it will set a variable to save the highest value the counter got to
+		if(currentLosses > worstInRow)
+		{
+			worstInRow = currentLosses;
+		}
+	}
+	
+	//counter is reset for a new loop
+	currentLosses = 1;
+	
+	//now that the program knows the highest losses in a row for any team, another loop is needed to check every team that lost that many times in a row
+	for(int i = 0; i < row; i++)
+	{
+		if(teams[i + 1][1].name == teams[i][1].name)
+		{
+			currentLosses++;
+		}
+		else
+		{
+			currentLosses = 1;
+		}
+		//this adds the name of the team(s) that have the losses number of wins in a row to a vector
+		if ((currentLosses == worstInRow) && (teams[i + 1][1].name == teams[i][1].name))
+		{
+			WorstTeams.push_back(teams[i][1].name);
+		}
+	}
+	
+	//printing out the information
+	cout << "The team(s) that have lost the most times in a row are: ";
+	for (int i = 0; i < WorstTeams.size(); i++)
+	{
+		//this condition just checks for duplicate values
+		if (WorstTeams[i] != WorstTeams[i+1])
+		{
+			cout << "<" << WorstTeams[i] << "> ";
+		}
+	}
+	cout << "they lost " << worstInRow << " times in a row.";
+}
 
 
 
@@ -238,6 +362,8 @@ int main(){
     cout << "Minimum score of any super bowl team: " << result4 << endl;
     cout << "Average winning score from Super Bowl teams: " << result << endl;
     cout << "Average losing score from Super Bowl teams: " << result2 << endl;
-    WorstTeam(teams, rows);
+    WorstTeam(teams, rows); 
+	MostInRow(teams, rows);
+    LostInRow(teams, rows);
 
 }
